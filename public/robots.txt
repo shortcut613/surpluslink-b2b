@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block authenticated/private areas from indexing
+Disallow: /donor/
+Disallow: /ngo/
+Disallow: /admin/
+Disallow: /update-password
+
+Sitemap: $SITEMAP_URL

@@ -1,0 +1,485 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * Accent colour: navy blue pulled from the SurplusLink logo (#031456 / #253368).
+ * Interactive blue uses a brighter mid-navy (oklch 0.46 0.22 264 ≈ #1e40af).
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-danger-bg: var(--danger-bg);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* SurplusLink — light monochromatic palette.
+   * Primary: near-black charcoal (warm neutral).
+   * All chroma values kept near-zero for a clean grey-scale.
+   */
+  --radius: 0.625rem;
+
+  /* Surfaces */
+  --background: oklch(0.98 0.002 75); /* warm white, almost paper-white */
+  --foreground: oklch(0.12 0.004 75); /* near-black charcoal text */
+  --card: oklch(1 0 0); /* pure white cards */
+  --card-foreground: oklch(0.12 0.004 75);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.004 75);
+
+  /* Primary = rich charcoal black */
+  --primary: oklch(0.18 0.006 75); /* deep charcoal near-black */
+  --primary-foreground: oklch(0.97 0.003 75);
+
+  /* Secondary / muted surfaces */
+  --secondary: oklch(0.93 0.004 75); /* light warm grey */
+  --secondary-foreground: oklch(0.22 0.005 75);
+  --muted: oklch(0.93 0.004 75);
+  --muted-foreground: oklch(0.5 0.006 75);
+
+  /* Accent (subtle grey tint for hover states) */
+  --accent: oklch(0.91 0.005 75);
+  --accent-foreground: oklch(0.18 0.006 75);
+
+  /* Semantic */
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.62 0.17 150);
+  --success-foreground: oklch(0.99 0 0);
+  --warning: oklch(0.82 0.16 85);
+  --warning-foreground: oklch(0.21 0.005 75);
+  --danger-bg: oklch(0.965 0.04 25);
+
+  /* Borders & inputs */
+  --border: oklch(0.87 0.005 75);
+  --input: oklch(0.87 0.005 75);
+  --ring: oklch(0.18 0.006 75); /* matches primary */
+
+  /* Charts — now greyscale-compatible but still distinct */
+  --chart-1: oklch(0.18 0.006 75);
+  --chart-2: oklch(0.45 0.005 75);
+  --chart-3: oklch(0.62 0.004 75);
+  --chart-4: oklch(0.75 0.004 75);
+  --chart-5: oklch(0.88 0.003 75);
+
+  /* Sidebar */
+  --sidebar: oklch(0.96 0.003 75);
+  --sidebar-foreground: oklch(0.12 0.004 75);
+  --sidebar-primary: oklch(0.18 0.006 75);
+  --sidebar-primary-foreground: oklch(0.97 0.003 75);
+  --sidebar-accent: oklch(0.91 0.005 75);
+  --sidebar-accent-foreground: oklch(0.18 0.006 75);
+  --sidebar-border: oklch(0.87 0.005 75);
+  --sidebar-ring: oklch(0.18 0.006 75);
+
+  /* Glass surface tokens */
+  --glass-bg: oklch(1 0 0 / 0.65);
+  --glass-border: oklch(1 0 0 / 0.7);
+  --glass-shadow: 0 8px 32px oklch(0.08 0 0 / 0.12), 0 2px 8px oklch(0.08 0 0 / 0.07);
+  --glass-shadow-lg: 0 20px 60px oklch(0.08 0 0 / 0.16), 0 4px 16px oklch(0.08 0 0 / 0.09);
+}
+
+.dark {
+  /* Dark mode — deep graphite backgrounds, soft warm whites for text */
+  --background: oklch(0.11 0.003 75); /* near-black graphite */
+  --foreground: oklch(0.95 0.003 75); /* warm off-white text */
+  --card: oklch(0.16 0.004 75); /* dark graphite card */
+  --card-foreground: oklch(0.95 0.003 75);
+  --popover: oklch(0.16 0.004 75);
+  --popover-foreground: oklch(0.95 0.003 75);
+  --primary: oklch(0.95 0.003 75); /* white becomes primary in dark mode */
+  --primary-foreground: oklch(0.12 0.004 75);
+  --secondary: oklch(0.22 0.005 75);
+  --secondary-foreground: oklch(0.9 0.004 75);
+  --muted: oklch(0.22 0.005 75);
+  --muted-foreground: oklch(0.58 0.005 75);
+  --accent: oklch(0.25 0.005 75);
+  --accent-foreground: oklch(0.9 0.004 75);
+  --destructive: oklch(0.7 0.19 22);
+  --destructive-foreground: oklch(0.96 0.003 75);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.8 0.004 75);
+  --chart-1: oklch(0.9 0.003 75);
+  --chart-2: oklch(0.7 0.004 75);
+  --chart-3: oklch(0.55 0.004 75);
+  --chart-4: oklch(0.4 0.004 75);
+  --chart-5: oklch(0.28 0.004 75);
+  --sidebar: oklch(0.14 0.004 75);
+  --sidebar-foreground: oklch(0.9 0.004 75);
+  --sidebar-primary: oklch(0.9 0.003 75);
+  --sidebar-primary-foreground: oklch(0.12 0.004 75);
+  --sidebar-accent: oklch(0.22 0.005 75);
+  --sidebar-accent-foreground: oklch(0.9 0.004 75);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.8 0.004 75);
+
+  --glass-bg: oklch(0.18 0.004 75 / 0.6);
+  --glass-border: oklch(1 0 0 / 0.1);
+  --glass-shadow: 0 8px 32px oklch(0 0 0 / 0.4), 0 2px 8px oklch(0 0 0 / 0.2);
+  --glass-shadow-lg: 0 20px 60px oklch(0 0 0 / 0.5), 0 4px 16px oklch(0 0 0 / 0.3);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ─── Page transition animations ─── */
+
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes sidebar-enter {
+    from {
+      opacity: 0;
+      transform: translateX(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes layout-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .page-transition {
+    animation: page-enter 0.1s ease-out both;
+  }
+
+  .sidebar-transition {
+    animation: sidebar-enter 0.15s ease-out both;
+  }
+
+  .layout-transition {
+    animation: layout-fade-in 0.1s ease-out both;
+  }
+
+  /* ─── Auth Sliding Panel (md breakpoint and up) ─── */
+  @media (min-width: 768px) {
+    .auth-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 900px;
+      min-height: 600px;
+    }
+    .auth-form-container {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .auth-sign-in {
+      left: 0;
+      width: 50%;
+      z-index: 2;
+      opacity: 1;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .auth-container.right-panel-active .auth-sign-in {
+      transform: translateX(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .auth-sign-up {
+      left: 0;
+      width: 50%;
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .auth-container.right-panel-active .auth-sign-up {
+      transform: translateX(100%);
+      opacity: 1;
+      z-index: 5;
+      animation: auth-show 0.6s;
+      pointer-events: auto;
+    }
+    @keyframes auth-show {
+      0%,
+      49.99% {
+        opacity: 0;
+        z-index: 1;
+      }
+      50%,
+      100% {
+        opacity: 1;
+        z-index: 5;
+      }
+    }
+    .auth-overlay-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 100;
+    }
+    .auth-container.right-panel-active .auth-overlay-container {
+      transform: translateX(-100%);
+    }
+    .auth-overlay {
+      position: relative;
+      left: -100%;
+      height: 100%;
+      width: 200%;
+      transform: translateX(0);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .auth-container.right-panel-active .auth-overlay {
+      transform: translateX(50%);
+    }
+    .auth-overlay-panel {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      transform: translateX(0);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .auth-overlay-left {
+      transform: translateX(-20%);
+    }
+    .auth-container.right-panel-active .auth-overlay-left {
+      transform: translateX(0);
+    }
+    .auth-overlay-right {
+      right: 0;
+      transform: translateX(0);
+    }
+    .auth-container.right-panel-active .auth-overlay-right {
+      transform: translateX(20%);
+    }
+  }
+
+  /* ─── Glassmorphism utilities ─── */
+
+  /* Standard glass panel — white/65 with blur and navy shadow */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* Large glass panel — stronger blur & shadow */
+  .glass-lg {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(1.8);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow-lg);
+  }
+
+  /* Dark-tinted glass (for nav bars, sticky elements) */
+  .glass-nav {
+    background: oklch(1 0 0 / 0.78);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border-bottom: 1px solid oklch(0.46 0.22 264 / 0.08);
+    box-shadow:
+      0 1px 0 oklch(0.46 0.22 264 / 0.06),
+      0 4px 16px oklch(0.22 0.18 264 / 0.06);
+  }
+
+  /* Google Maps autocomplete */
+  gmp-place-autocomplete {
+    background-color: var(--color-background);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-input);
+    color: var(--color-foreground);
+    width: 100%;
+    box-sizing: border-box;
+    color-scheme: light;
+    --gmp-color-background: var(--color-background);
+    --gmp-font-family: inherit;
+    --pac-background-color: var(--color-background);
+    --pac-color: var(--color-foreground);
+  }
+
+  .dark gmp-place-autocomplete {
+    color-scheme: dark;
+  }
+
+  .pac-container {
+    background-color: var(--color-background) !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-foreground) !important;
+    font-family: inherit !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+  }
+  .pac-item {
+    border-top-color: var(--color-border) !important;
+    color: var(--color-foreground) !important;
+  }
+  .pac-item:hover {
+    background-color: var(--color-muted) !important;
+  }
+  .pac-item-query {
+    color: var(--color-foreground) !important;
+  }
+  .pac-matched {
+    color: var(--color-primary) !important;
+  }
+}
+
+@layer utilities {
+  /* Driver.js Custom Theme (Glassmorphism) */
+  .driverjs-theme.driver-popover {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(24px) saturate(1.8) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
+    color: var(--color-foreground) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius-2xl) !important;
+    box-shadow: var(--glass-shadow-lg) !important;
+    padding: 1.5rem !important;
+    max-width: 380px !important;
+    font-family: inherit !important;
+  }
+
+  .driverjs-theme .driver-popover-title {
+    font-size: 1.125rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 0.5rem !important;
+    color: var(--color-foreground) !important;
+  }
+
+  .driverjs-theme .driver-popover-description {
+    font-size: 0.875rem !important;
+    color: var(--color-muted-foreground) !important;
+    line-height: 1.6 !important;
+  }
+
+  .driverjs-theme .driver-popover-footer {
+    margin-top: 1.5rem !important;
+  }
+
+  .driverjs-theme .driver-popover-footer button {
+    border-radius: var(--radius-md) !important;
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+    padding: 0.5rem 1rem !important;
+    text-shadow: none !important;
+    background-color: transparent !important;
+    color: var(--color-foreground) !important;
+    border: 1px solid var(--color-border) !important;
+    transition: all 0.2s !important;
+  }
+
+  .driverjs-theme .driver-popover-footer button:hover {
+    background-color: var(--color-muted) !important;
+  }
+
+  .driverjs-theme .driver-popover-footer .driver-popover-next-btn {
+    background-color: var(--color-primary) !important;
+    color: var(--color-primary-foreground) !important;
+    border: none !important;
+  }
+
+  .driverjs-theme .driver-popover-footer .driver-popover-next-btn:hover {
+    background-color: var(--color-primary) !important;
+    opacity: 0.9 !important;
+  }
+
+  .driverjs-theme .driver-popover-arrow {
+    display: none !important;
+  }
+}
